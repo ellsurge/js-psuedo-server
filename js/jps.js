@@ -1,0 +1,6 @@
+
+class DB{
+    mk($name){
+
+    }
+}

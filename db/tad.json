@@ -1,0 +1,21 @@
+{
+    "school": [
+        {
+        "table name": "bla",
+        "fields": ["name", "age", "class"],
+        "data": [
+            {"name": "james", "class":"200lvl","time": "200013245"},
+            {"name": "james", "class":"200lvl","time": "200013245"},
+            {"name": "james", "class":"200lvl","time": "200013245"},
+            {"name": "james", "class":"200lvl","time": "200013245"},
+            {"name": "james", "class":"200lvl","time": "200013245"}
+        ]},
+        {
+            "table name": "bla",
+            "fields": ["name", "age", "class"],
+            "data": [
+                {"name": "james", "class":"200lvl","time": "200013245"}
+            ]}
+    ]
+
+}

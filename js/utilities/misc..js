@@ -17,3 +17,7 @@ function send_request(url){
 function log(message){
     console.log(message);
 }
+
+function auth(name, uname, pword, path ){
+    
+}

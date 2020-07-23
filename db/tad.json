@@ -1,7 +1,7 @@
 {
     "school": [
         {
-        "table name": "bla",
+        "table_name": "bla",
         "fields": ["name", "age", "class"],
         "data": [
             {"name": "james", "class":"200lvl","time": "200013245"},

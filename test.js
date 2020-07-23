@@ -58,7 +58,7 @@ http.createServer((req, res)=>{
 
                 break;
         case 'mkdb':
-            var db_temp = '{ "'+q.name+'": [  ] }';
+            var db_temp = '{ "Data: [  ] }';
                     fs.writeFile('./db/'+q.name+'.json', db_temp, function (err) {
                     if (err) throw err;
                     console.log('database created');

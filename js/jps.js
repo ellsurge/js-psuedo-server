@@ -74,6 +74,60 @@ class DB{
 
 class conn{
     constructor (dbname, db_uname, dbpass){
-        
+        this.dbn = dbname;
+        this.dbu = db_uname;
+        this.dbp = dbpass;
+        this.hdbn = MD5(dbname);
+        this.hdbu = MD5(db_uname);
+        this.hdbp = MD5(dbpass);
+
+    }
+    create_table(name, fields){
+
+        var table_arr  = $.ajax({
+            url: '../db/'+this.hdbn+'.json',
+            dataType: 'json',
+            type: 'get',
+            catch: 'false',
+            success: (data)=>{
+                // var table = JSON.prase(data);
+                var rn = this.hdbn
+                console.log(rn);
+                // var m = "name";
+                console.log(data.Data);
+
+                function chk(m){
+                    return m.table_name == name;
+                }
+                if (data.Data.findIndex(chk) <0 ){
+                    log("does not exist");
+                }else{
+                    log("table aready exists")
+                };
+
+            //    if(!data.row.includes(h_name)){
+            //     if(send_request(server_url+"?mod=mkdb&name="+h_name)){
+            //         log("database "+name+" files created");
+
+            //     }else{
+            //         log("could not make db")
+            //         // break;
+            //     }
+            //     if(send_request(server_url+"?mod=regdb&data="+h_name+"&uname="+h_uname+"&pword="+h_pword)){
+            //         log("database "+name+" registration success");
+
+            //     }else{
+            //         log("could not register db");
+            //         // break;
+            //     }
+            //    }else{
+            //        log("database already exists");
+            //     //    break;
+            //    }
+
+            }
+            
+        })
+
     }
 }

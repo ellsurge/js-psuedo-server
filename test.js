@@ -16,6 +16,17 @@ http.createServer((req, res)=>{
                 var fs = require('fs');
                 fs.writeFile('./db/db_list.json', final, function (err) {
                   if (err) throw err;
+                  console.log('database reg --50%');
+                });
+            })
+            fs.readFile('./db/db_details.json', (err, data)=>{
+                var l = JSON.parse(data);
+                var db_arr = [q.data, q.pword, q.uname]
+                l.row.push(db_arr);
+                var final = JSON.stringify(l);
+                var fs = require('fs');
+                fs.writeFile('./db/db_details.json', final, function (err) {
+                  if (err) throw err;
                   console.log('database registerd');
                 });
             })
@@ -25,14 +36,26 @@ http.createServer((req, res)=>{
             case 'unregdb':
                 fs.readFile('./db/db_list.json', (err, data)=>{
                     var l = JSON.parse(data);
-                    l.row.splice(l.row.indexOf(q.data), 1);
+                    var rem_index =l.row.indexOf(q.data);
+                    l.row.splice(rem_index, 1);
                     var final = JSON.stringify(l);
                     var fs = require('fs');
                     fs.writeFile('./db/db_list.json', final, function (err) {
                       if (err) throw err;
-                      console.log('database unregisterd');
+                      console.log('database unregisterd ---50%');
                     });
+                    fs.readFile('./db/db_details.json', (err, data)=>{
+                        var l2 = JSON.parse(data);
+                        l2.row.splice(rem_index, 1);
+                        var final2 = JSON.stringify(l2);
+                        var fs = require('fs');
+                        fs.writeFile('./db/db_details.json', final2, function (err) {
+                          if (err) throw err;
+                          console.log('database unregisterd -100%');
+                        });
+                    })
                 })
+
                 break;
         case 'mkdb':
             var db_temp = '{ "'+q.name+'": [  ] }';

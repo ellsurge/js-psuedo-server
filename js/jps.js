@@ -1,8 +1,11 @@
 
 const server_url = "http://localhost:2020";
 class DB{
-    mk(name){
-        var h_name = MD5(name)
+    
+    mk(name, uname, pword){
+        var h_name = MD5(name);
+        var h_uname = MD5(uname);
+        var h_pword = MD5(pword);
         var list  = $.ajax({
             url: '../db/db_list.json',
             dataType: 'json',
@@ -15,21 +18,24 @@ class DB{
 
                 }else{
                     log("could not make db")
+                    // break;
                 }
-                if(send_request(server_url+"?mod=regdb&data="+h_name)){
+                if(send_request(server_url+"?mod=regdb&data="+h_name+"&uname="+h_uname+"&pword="+h_pword)){
                     log("database "+name+" registration success");
 
                 }else{
                     log("could not register db");
+                    // break;
                 }
-
                }else{
                    log("database already exists");
+                //    break;
                }
 
             }
             
         })
+
     }
 
     delete(name){
@@ -64,4 +70,10 @@ class DB{
     }
 
     table
+}
+
+class conn{
+    constructor (dbname, db_uname, dbpass){
+        
+    }
 }

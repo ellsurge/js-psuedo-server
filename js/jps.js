@@ -100,7 +100,16 @@ class conn{
                     return m.table_name == name;
                 }
                 if (data.Data.findIndex(chk) <0 ){
-                    log("does not exist");
+                     var index  = data.Data.findIndex(chk);
+                    // log(fields);
+                    if(send_request(server_url+"?mod=mktbl&name="+name+"&data="+fields+"&dbname="+this.hdbn)){
+                                log("table "+name+" added succesfully");
+            
+                            }else{
+                                log("could not make db")
+                                // break;
+                            }
+
                 }else{
                     log("table aready exists")
                 };

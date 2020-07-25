@@ -8,6 +8,7 @@ http.createServer((req, res)=>{
 
     var q = url.parse(req.url, true).query;
     switch (q.mod) {
+//************************************database querrys ************************ */
         case 'regdb':
             fs.readFile('./db/db_list.json', (err, data)=>{
                 var l = JSON.parse(data);
@@ -71,6 +72,29 @@ http.createServer((req, res)=>{
                     console.log('database deleted');
                     });
                     break;
+
+//******************************tavle querries ********************** */
+        case 'mktbl':
+            fs.readFile('./db/'+q.dbname+'.json', (err, data)=>{
+                var l = JSON.parse(data);
+                var tarr= q.data.split(',');
+
+                var template = {
+                  table_name: q.name,
+                  fields: tarr,
+                  data: []};
+
+                l.Data.push(template);
+                var final = JSON.stringify(l);
+                // console.log(final);
+                var fs = require('fs');
+                fs.writeFile('./db/'+q.dbname+'.json', final, function (err) {
+                  if (err) throw err;
+                  console.log('table:'+q.name+' added succesfully ');
+                });
+            })
+
+            break;
             default:
                 break;
     }
